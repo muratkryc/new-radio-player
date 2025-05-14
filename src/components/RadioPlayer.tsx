@@ -27,7 +27,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
           <div className="flex flex-col items-center">
             {/* Album Art */}
             {radioInfo?.art ? (
-              <div className="mb-6 w-full aspect-square max-w-[240px]">
+              <div className="mt-6 mb-6 w-full aspect-square max-w-[240px]">
                 <img 
                   src={imageUrlForTheme}
                   alt={radioInfo.title} 
@@ -36,7 +36,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
               </div>
             ) : (
               <div 
-                className={`p-12 rounded-lg mb-6 bg-gradient-to-r from-[var(--primary-start-color)] to-[var(--primary-end-color)]`}
+                className={`mt-6 p-12 rounded-lg mb-6 bg-gradient-to-r from-[var(--primary-start-color)] to-[var(--primary-end-color)]`}
               >
                 <Radio className="w-12 h-12 text-white" />
               </div>
