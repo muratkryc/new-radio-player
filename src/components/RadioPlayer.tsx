@@ -1,22 +1,29 @@
 import { useState, FC } from 'react';
 import { Radio, History, ChevronDown, ChevronUp } from 'lucide-react';
 import useAudioPlayer from '../hooks/useAudioPlayer';
-import useRadioInfo from '../hooks/useRadioInfo';
 import AudioControls from './AudioControls';
 import VolumeControl from './VolumeControl';
 import Visualizer from './Visualizer';
+import { RadioInfo } from '../types';
 
 interface RadioPlayerProps {
   streamUrl: string;
   stationName: string;
+  radioData: RadioInfo | null;
+  currentAlbumArtUrl?: string;
+  apiError: boolean;
 }
 
-const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
+const RadioPlayer: FC<RadioPlayerProps> = ({ 
+  streamUrl, 
+  stationName, 
+  radioData, 
+  currentAlbumArtUrl,
+  apiError 
+}) => {
   const [showHistory, setShowHistory] = useState(false);
   const { playerState, togglePlay, setVolume } = useAudioPlayer(streamUrl);
-  const { radioInfo, error: apiError } = useRadioInfo();
-  const imageUrlForTheme = radioInfo?.art?.replace('https://radyo.medyahost.com.tr', '/radio-image');
-  const { isPlaying, isLoading, volume, isError } = playerState;
+  const { isPlaying, isLoading, volume, isError: playerAudioError } = playerState;
 
   return (
     <div 
@@ -26,11 +33,11 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
         <div className={`bg-black bg-opacity-30 backdrop-blur-xl p-6 rounded-2xl shadow-2xl`}>
           <div className="flex flex-col items-center">
             {/* Album Art */}
-            {radioInfo?.art ? (
+            {currentAlbumArtUrl && radioData?.art ? (
               <div className="mt-6 mb-4 w-full aspect-square max-w-[240px]">
                 <img 
-                  src={imageUrlForTheme}
-                  alt={radioInfo.title} 
+                  src={currentAlbumArtUrl}
+                  alt={radioData.title} 
                   className="w-full h-full object-cover rounded-lg shadow-lg"
                 />
               </div>
@@ -49,7 +56,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
             <div className="text-center mb-4">
               <h1 className="text-xl font-bold text-white">{stationName}</h1>
               <p className="text-sm text-gray-300">
-                {radioInfo?.listeners && `${radioInfo.listeners} Dinleyici`}
+                {radioData?.listeners && `${radioData.listeners} Dinleyici`}
               </p>
             </div>
 
@@ -61,12 +68,12 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
             {/* Now playing */}
             <div className="mb-6 w-full text-center">
               <p className="text-white font-medium truncate">
-                {radioInfo?.title || 'Yükleniyor...'}
+                {radioData?.title || 'Yükleniyor...'}
               </p>
             </div>
 
             {/* Error message */}
-            {(isError || apiError) && (
+            {(playerAudioError || apiError) && (
               <div className="mb-4 text-red-500 text-sm text-center">
                 Error loading stream. Please try again.
               </div>
@@ -86,7 +93,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
             </div>
 
             {/* Recent tracks toggle */}
-            {radioInfo?.history && (
+            {radioData?.history && (
               <button
                 onClick={() => setShowHistory(!showHistory)}
                 className="w-full mt-4 flex items-center justify-between px-4 py-2 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/5"
@@ -100,9 +107,9 @@ const RadioPlayer: FC<RadioPlayerProps> = ({ streamUrl, stationName }) => {
             )}
 
             {/* Recent tracks list */}
-            {showHistory && radioInfo?.history && (
+            {showHistory && radioData?.history && (
               <div className="w-full mt-2 space-y-2 max-h-32 overflow-y-auto custom-scrollbar px-4">
-                {radioInfo.history.map((track, index) => (
+                {radioData.history.map((track, index) => (
                   <p key={index} className="text-sm text-gray-400 truncate">
                     {track}
                   </p>
