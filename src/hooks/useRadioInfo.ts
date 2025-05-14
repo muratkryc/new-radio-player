@@ -1,33 +1,51 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { RadioInfo } from '../types';
 
 const useRadioInfo = () => {
   const [radioInfo, setRadioInfo] = useState<RadioInfo | null>(null);
   const [error, setError] = useState<boolean>(false);
 
-  const fetchRadioInfo = async () => {
+  const fetchRadioInfo = useCallback(async () => {
     try {
       const response = await fetch('https://radyo.medyahost.com.tr/cp/get_info.php?p=8046');
+      if (!response.ok) {
+        console.warn('Radio info fetch failed with status:', response.status);
+        setError(true);
+        return;
+      }
       const data = await response.json();
       setRadioInfo({
         title: data.title,
-        // art değeri güncelleniyor: orijinal URL + zaman damgası
         art: `${data.art}?t=${new Date().getTime()}`,
         listeners: data.listeners,
         history: data.history.map((track: string) => track.replace(/<br>$/, '').replace(/^\d+\.\)\s/, '')),
       });
       setError(false);
     } catch (err) {
+      console.error('Error fetching radio info:', err);
       setError(true);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    fetchRadioInfo();
-    const interval = setInterval(fetchRadioInfo, 5000); // Update every 5 seconds
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+      } else {
+        fetchRadioInfo();
+      }
+    };
 
-    return () => clearInterval(interval);
-  }, []);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    fetchRadioInfo();
+
+    const interval = setInterval(fetchRadioInfo, 7000);
+
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, [fetchRadioInfo]);
 
   return { radioInfo, error };
 };
