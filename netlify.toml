@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/radio-image/*"
+  to = "https://radyo.medyahost.com.tr/:splat"
+  status = 200
+  force = true 
