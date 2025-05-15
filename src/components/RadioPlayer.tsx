@@ -66,7 +66,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
   };
 
   return (
-    <div className="w-screen min-h-screen sm:max-w-md md:max-w-xl lg:max-w-4xl xl:max-w-6xl max-h-full overflow-y-auto custom-scrollbar p-4 sm:p-1 flex flex-col justify-center">
+    <div className="w-screen min-h-screen sm:max-w-md md:max-w-xl lg:max-w-4xl xl:max-w-6xl max-h-full overflow-y-auto custom-scrollbar p-0 sm:p-1 flex flex-col justify-center">
       <div className={`bg-black bg-opacity-30 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-2xl shadow-2xl relative w-full flex flex-col`}>
         
         {linkCopied && (

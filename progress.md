@@ -43,6 +43,8 @@
     *   `RadioPlayer.tsx` mobil cihazlarda tam ekran (`min-h-screen`, `w-screen`) kullanacak şekilde güncellendi.
     *   Mobil cihazlarda oynatıcı kontrollerinin (play/pause, volume, share) yanlardan basık görünmemesi için `RadioPlayer.tsx` içindeki sarmalayıcı `div`'e uygun padding (`px-4`) eklendi.
     *   `navigator.share` için linter uyarısı düzeltildi.
+    *   `VolumeControl.tsx` içindeki ses ayar çubuğu en dar mobil ekranlar için küçültülerek (`w-16`) butonların sıkışması engellendi.
+    *   Mobil cihazlarda oynatıcının kenarlarında boşluk kalmaması için `RadioPlayer.tsx` en dış sarmalayıcısının padding'i sıfırlandı (`p-0`).
 
 ## Sonraki Adımlar (Örnek)
 
