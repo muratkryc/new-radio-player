@@ -45,6 +45,8 @@
     *   `navigator.share` için linter uyarısı düzeltildi.
     *   `VolumeControl.tsx` içindeki ses ayar çubuğu en dar mobil ekranlar için küçültülerek (`w-16`) butonların sıkışması engellendi.
     *   Mobil cihazlarda oynatıcının kenarlarında boşluk kalmaması için `RadioPlayer.tsx` en dış sarmalayıcısının padding'i sıfırlandı (`p-0`).
+    *   `App.tsx` içinde `RadioPlayer`'ı saran `div`'deki genel padding kaldırıldı.
+    *   Mobil cihazlarda oynatıcı kartının ekranın üst ve alt kenarlarına tam yaslanması sağlandı, geniş ekran düzeni korunarak responsive iyileştirmeler yapıldı (`justify-start sm:justify-center` ve `flex-grow sm:flex-grow-0` kullanılarak).
 
 ## Sonraki Adımlar (Örnek)
 

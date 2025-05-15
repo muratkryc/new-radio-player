@@ -50,7 +50,7 @@ function App() {
       style={appStyle}
       className="h-screen flex flex-col overflow-hidden transition-all duration-1000 ease-in-out"
     >
-      <div className="flex-grow flex items-center justify-center w-full p-4">
+      <div className="flex-grow flex items-center justify-center w-full">
         <RadioPlayer 
           streamUrl={streamUrl} 
           stationName={stationName} 
