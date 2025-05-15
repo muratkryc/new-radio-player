@@ -31,17 +31,18 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onChange }) => {
   };
 
   const renderVolumeIcon = () => {
-    if (volume === 0) return <VolumeX size={20} />;
-    if (volume < 0.5) return <Volume1 size={20} />;
-    return <Volume2 size={20} />;
+    // İkon boyutları responsive yapıldı
+    if (volume === 0) return <VolumeX size={20} className="lg:size-6" />;
+    if (volume < 0.5) return <Volume1 size={20} className="lg:size-6" />;
+    return <Volume2 size={20} className="lg:size-6" />;
   };
 
   const thumbPosition = `${volume * 100}%`;
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 lg:gap-4">
       <button 
-        className="text-white hover:text-opacity-80 transition-colors p-1 rounded-full hover:bg-white/10"
+        className="text-white hover:text-opacity-80 transition-colors p-1 lg:p-1.5 rounded-full hover:bg-white/10"
         onClick={() => onChange(volume === 0 ? 0.7 : 0)}
         aria-label={volume === 0 ? "Unmute" : "Mute"}
       >
@@ -49,7 +50,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onChange }) => {
       </button>
       <div 
         ref={trackRef}
-        className="relative w-24 h-2 bg-gray-500/70 rounded-full cursor-pointer group"
+        className="relative w-24 lg:w-32 h-2 bg-gray-500/70 rounded-full cursor-pointer group"
         onClick={handleTrackClick}
       >
         <div 
@@ -57,7 +58,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onChange }) => {
           style={{ width: thumbPosition }}
         />
         <div 
-          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-md transition-transform duration-150 ease-in-out group-hover:scale-110"
+          className="absolute top-1/2 -translate-y-1/2 w-4 h-4 lg:w-5 lg:h-5 bg-white rounded-full shadow-md transition-transform duration-150 ease-in-out group-hover:scale-110"
           style={{ left: thumbPosition, transform: `translateX(-50%) translateY(-50%)` }}
         >
           <div className="absolute inset-0.5 bg-gradient-to-br from-[var(--primary-start-color)] to-[var(--primary-end-color)] rounded-full"></div>

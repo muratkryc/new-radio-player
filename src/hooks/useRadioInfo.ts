@@ -14,11 +14,21 @@ const useRadioInfo = () => {
         return;
       }
       const data = await response.json();
+      
+      let djName = data.djusername;
+      if (djName && djName.toLowerCase() === 'no dj') {
+        djName = 'OtoDJ';
+      } else if (!djName && data.autodj) {
+        djName = data.autodj;
+      }
+
       setRadioInfo({
         title: data.title,
         art: `${data.art}?t=${new Date().getTime()}`,
         listeners: data.listeners,
         history: data.history.map((track: string) => track.replace(/<br>$/, '').replace(/^\d+\.\)\s/, '')),
+        bitrate: data.bitrate,
+        dj: djName,
       });
       setError(false);
     } catch (err) {

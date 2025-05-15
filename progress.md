@@ -25,6 +25,20 @@
     *   Albüm kapağı ile üst kısım arasına boşluk eklendi (`mt-6`).
     *   Albüm kapağının altına estetik bir ayırıcı çizgi eklendi.
     *   **Performans Optimizasyonu:** Resim ve tema güncellemeleri sadece şarkı başlığı değiştiğinde yapılacak şekilde optimize edildi. `RadioPlayer.tsx` bileşeni, state yönetimini `App.tsx`'den prop'lar aracılığıyla alacak şekilde yeniden düzenlendi. Bu sayede gereksiz resim yüklemelerinin ve önbellek birikmesinin önüne geçildi.
+*   **Arayüz İyileştirmeleri ve Responsive Tasarım:**
+    *   Şarkı başlığı için, metin uzunluğuna göre dinamik hızda kayan yazı efekti eklendi.
+    *   Player kartı, farklı ekran boyutlarına (`sm`, `md`, `lg`, `xl`) uyum sağlayacak şekilde responsive hale getirildi.
+    *   Geniş ekranlar (`lg` ve üzeri) için iki sütunlu bir yerleşim düzeni (albüm kapağı solda, diğer bilgiler sağda) oluşturuldu.
+    *   Albüm kapağı, butonlar, ikonlar ve metin boyutları farklı ekran boyutları için optimize edildi.
+    *   `AudioControls` ve `VolumeControl` bileşenleri, büyük ekranlarda daha büyük ve kullanışlı olacak şekilde güncellendi.
+    *   "Son Çalınanlar" bölümü, geniş ekranlarda daha kompakt ve estetik bir görünüme kavuşturuldu.
+    *   Geniş ekranlarda albüm kapağı altındaki ayırıcı çizgi gizlendi ve albüm kapağı alanı daha da büyütüldü.
+*   **Tam Ekran Uyumu ve Kullanıcı Deneyimi:**
+    *   Uygulamanın tam ekran yüksekliğini (`h-screen`) kullanması ve gereksiz dikey scroll barların oluşmaması sağlandı.
+    *   Player içeriğinin (örneğin "Son Çalınanlar" listesi açıkken) taşması durumunda, player'ın kendi içinde scroll olması ( `overflow-y-auto` ile `custom-scrollbar` kullanılarak) ayarlandı, bu sayede ana sayfa düzeni ve footer görünürlüğü korundu.
+*   **Yeni Fonksiyonellikler:**
+    *   "Sayfayı Paylaş" butonu eklendi. Bu buton, Web Share API desteği olan cihazlarda sistem paylaşım menüsünü açar, olmayanlarda ise sayfa URL'sini panoya kopyalar ve kullanıcıya geri bildirim verir.
+    *   Player'a API'den alınan stream "bitrate" ve "DJ adı" bilgileri eklendi. DJ adı "No DJ" olarak gelirse, arayüzde "OtoDJ" olarak gösterilmesi sağlandı.
 
 ## Sonraki Adımlar (Örnek)
 

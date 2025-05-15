@@ -48,9 +48,9 @@ function App() {
   return (
     <div 
       style={appStyle}
-      className="min-h-screen flex items-center justify-center p-4 transition-all duration-1000 ease-in-out"
+      className="h-screen flex flex-col overflow-hidden transition-all duration-1000 ease-in-out"
     >
-      <div className="w-full max-w-md">
+      <div className="flex-grow flex items-center justify-center w-full p-4">
         <RadioPlayer 
           streamUrl={streamUrl} 
           stationName={stationName} 
@@ -58,10 +58,10 @@ function App() {
           currentAlbumArtUrl={imageUrlForThemeAndDisplay} 
           apiError={radioInfoError}
         />
-        
-        <div className="mt-8 text-center text-gray-500 text-xs">
-          <p>© 2025 {stationName} Radio. All rights reserved.</p>
-        </div>
+      </div>
+      
+      <div className="py-4 text-center text-gray-500 text-xs">
+        <p>© {new Date().getFullYear()} {stationName} Radio. All rights reserved.</p>
       </div>
     </div>
   );

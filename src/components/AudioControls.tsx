@@ -20,7 +20,7 @@ const AudioControls: FC<AudioControlsProps> = ({ isPlaying, isLoading, onToggleP
       onClick={onTogglePlay}
       disabled={isLoading}
       className={`
-        w-14 h-14 rounded-full flex items-center justify-center
+        w-14 h-14 lg:w-16 lg:h-16 rounded-full flex items-center justify-center
         // CSS değişkenlerini kullanarak gradient tanımla
         bg-gradient-to-r from-[var(--primary-start-color)] to-[var(--primary-end-color)]
         shadow-lg 
@@ -33,11 +33,11 @@ const AudioControls: FC<AudioControlsProps> = ({ isPlaying, isLoading, onToggleP
       aria-label={isPlaying ? "Pause" : "Play"}
     >
       {isLoading ? (
-        <Loader2 className="w-7 h-7 text-white animate-spin" /> // ikon boyutu biraz artırıldı
+        <Loader2 className="w-7 h-7 lg:w-8 lg:h-8 text-white animate-spin" /> // İkon boyutu responsive yapıldı
       ) : isPlaying ? (
-        <Pause className="w-7 h-7 text-white" /> // ikon boyutu biraz artırıldı
+        <Pause className="w-7 h-7 lg:w-8 lg:h-8 text-white" /> // İkon boyutu responsive yapıldı
       ) : (
-        <Play className="w-7 h-7 text-white ml-1" /> // ikon boyutu biraz artırıldı
+        <Play className="w-7 h-7 lg:w-8 lg:h-8 text-white ml-1 lg:ml-[0.3rem]" /> // İkon boyutu ve ml responsive yapıldı
       )}
     </button>
   );

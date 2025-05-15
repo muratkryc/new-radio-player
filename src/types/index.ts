@@ -10,4 +10,6 @@ export interface RadioInfo {
   art: string;
   listeners: string;
   history: string[];
+  bitrate?: string;
+  dj?: string;
 }
