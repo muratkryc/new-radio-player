@@ -50,7 +50,7 @@ const VolumeControl: React.FC<VolumeControlProps> = ({ volume, onChange }) => {
       </button>
       <div 
         ref={trackRef}
-        className="relative w-24 lg:w-32 h-2 bg-gray-500/70 rounded-full cursor-pointer group"
+        className="relative w-16 sm:w-24 lg:w-32 h-2 bg-gray-500/70 rounded-full cursor-pointer group"
         onClick={handleTrackClick}
       >
         <div 

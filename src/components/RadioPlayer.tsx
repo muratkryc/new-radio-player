@@ -66,8 +66,8 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
   };
 
   return (
-    <div className="w-full max-w-md md:max-w-xl lg:max-w-4xl xl:max-w-6xl max-h-full overflow-y-auto custom-scrollbar p-1">
-      <div className={`bg-black bg-opacity-30 backdrop-blur-xl p-6 lg:p-8 rounded-2xl shadow-2xl relative`}>
+    <div className="w-screen min-h-screen sm:max-w-md md:max-w-xl lg:max-w-4xl xl:max-w-6xl max-h-full overflow-y-auto custom-scrollbar p-4 sm:p-1 flex flex-col justify-center">
+      <div className={`bg-black bg-opacity-30 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-2xl shadow-2xl relative w-full flex flex-col`}>
         
         {linkCopied && (
           <div className="absolute top-4 right-4 bg-[var(--primary-start-color)] text-white text-xs px-3 py-1.5 rounded-md shadow-lg z-20">
@@ -79,7 +79,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
           
           <div className="w-full lg:w-1/2 xl:w-1/2 flex flex-col items-center lg:items-stretch mb-6 lg:mb-0">
             {currentAlbumArtUrl && radioData?.art ? (
-              <div className="mt-6 lg:mt-0 mb-4 w-full aspect-square max-w-[240px] lg:max-w-none">
+              <div className="mt-6 lg:mt-0 mb-4 w-full aspect-square max-w-xs sm:max-w-[240px] lg:max-w-none">
                 <img 
                   src={currentAlbumArtUrl}
                   alt={radioData.title || 'Albüm Kapağı'} 
@@ -88,7 +88,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
               </div>
             ) : (
               <div 
-                className={`mt-6 lg:mt-0 mb-4 p-12 lg:p-16 rounded-lg bg-gradient-to-r from-[var(--primary-start-color)] to-[var(--primary-end-color)] flex items-center justify-center aspect-square w-full max-w-[240px] lg:max-w-none`}
+                className={`mt-6 lg:mt-0 mb-4 p-12 lg:p-16 rounded-lg bg-gradient-to-r from-[var(--primary-start-color)] to-[var(--primary-end-color)] flex items-center justify-center aspect-square w-full max-w-xs sm:max-w-[240px] lg:max-w-none`}
               >
                 <Radio className="w-12 h-12 lg:w-20 lg:h-20 text-white" />
               </div>
@@ -134,7 +134,7 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
               </div>
             )}
 
-            <div className="flex items-center justify-center lg:justify-start w-full gap-4 px-4 mb-6">
+            <div className="flex items-center justify-center w-full gap-3 sm:gap-4 px-4 mb-6">
               <AudioControls 
                 isPlaying={isPlaying}
                 isLoading={isLoading}
@@ -147,10 +147,10 @@ const RadioPlayer: FC<RadioPlayerProps> = ({
               <button
                 onClick={handleShare}
                 title="Sayfayı Paylaş"
-                className="p-2 lg:p-2.5 rounded-full text-white hover:bg-white/10 transition-colors"
+                className="p-2.5 sm:p-2 lg:p-2.5 rounded-full text-white hover:bg-white/10 transition-colors"
                 aria-label="Sayfayı paylaş"
               >
-                {typeof navigator !== 'undefined' && navigator.share ? 
+                {typeof navigator !== 'undefined' && typeof navigator.share === 'function' ? 
                   <Share2 size={20} className="lg:size-5" /> : 
                   <Copy size={20} className="lg:size-5" />
                 }

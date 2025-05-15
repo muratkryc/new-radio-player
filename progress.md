@@ -39,6 +39,10 @@
 *   **Yeni Fonksiyonellikler:**
     *   "Sayfayı Paylaş" butonu eklendi. Bu buton, Web Share API desteği olan cihazlarda sistem paylaşım menüsünü açar, olmayanlarda ise sayfa URL'sini panoya kopyalar ve kullanıcıya geri bildirim verir.
     *   Player'a API'den alınan stream "bitrate" ve "DJ adı" bilgileri eklendi. DJ adı "No DJ" olarak gelirse, arayüzde "OtoDJ" olarak gösterilmesi sağlandı.
+*   **Mobil Tam Ekran ve Buton İyileştirmeleri:**
+    *   `RadioPlayer.tsx` mobil cihazlarda tam ekran (`min-h-screen`, `w-screen`) kullanacak şekilde güncellendi.
+    *   Mobil cihazlarda oynatıcı kontrollerinin (play/pause, volume, share) yanlardan basık görünmemesi için `RadioPlayer.tsx` içindeki sarmalayıcı `div`'e uygun padding (`px-4`) eklendi.
+    *   `navigator.share` için linter uyarısı düzeltildi.
 
 ## Sonraki Adımlar (Örnek)
 
